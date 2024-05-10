@@ -1,4 +1,4 @@
-import GameContainer from './GameContainer.tsx';
+import GameContainer from './components/GameContainer.tsx';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
