@@ -17,4 +17,12 @@ export const obstacleStyle: React.CSSProperties = {
 export const planeStyle: React.CSSProperties = {
   width: `${Constants.PLANE_WIDTH}px`,
   height: `${Constants.PLANE_HEIGHT}px`,
+  bottom: '0'
+};
+
+export const gameOverStyle: React.CSSProperties = {
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  fontSize: '24px'
 };

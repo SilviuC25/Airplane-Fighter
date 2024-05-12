@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import useScore from '../hooks/useScore';
 import useGenerateObstacle from '../hooks/useGenerateObstacle';
 import useIncreaseSpeed from '../hooks/useIncreaseSpeed';
-import useCheckCollision from '../hooks/useCheckCollision';
 import useMoveObstacles from '../hooks/useMoveObstacles';
+import useCheckCollision from '../hooks/useCheckCollision';
 import useHandleKeyPress from '../hooks/useHandleKeyPress';
-import useScore from '../hooks/useScore';
 import * as Constants from '../constants/gameConstants';
 import * as Styles from '../styles/gameContainerStyles';
-import { Obstacle } from '../datatypes/obstacle';
+import Obstacles from './Obstacles';
+import Airplane from './Airplane';
+import { Obstacle } from '../datatypes/obstacle'
 
 function GameContainer() {
   const [obstacles, setObstacles] = useState<Obstacle[]>([]);
@@ -26,7 +28,7 @@ function GameContainer() {
   useHandleKeyPress(gameOver, gameContainerWidth, setPlanePosition);
 
   const resetGame = () => {
-    resetScore(); // Resetează scorul
+    resetScore();
     setObstacles([]);
     setFallSpeed(Constants.INITIAL_FALL_SPEED);
     setPlanePosition({ x: initialPlaneXPosition, y: 0 });
@@ -40,26 +42,12 @@ function GameContainer() {
         Score: {score}{' '}
       </h3>
       <div className='bg-dark' style={Styles.gameContainerStyle}>
-        {obstacles.map((obstacle, index) => (
-          <img
-            key={index}
-            src={Constants.asteroidObstacles[obstacle.id % Constants.asteroidObstacles.length]}
-            alt='Obstacle'
-            style={{
-              ...Styles.obstacleStyle,
-              left: `${obstacle.x}%`,
-              top: `${obstacle.y}px`
-            }}
-          />
-        ))}
+        <Obstacles obstacles={obstacles} />
         {gameOver && (
           <div
             className='text-center position-absolute text-light'
             style={{
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              fontSize: '24px'
+              ...Styles.gameOverStyle
             }}
           >
             Game Over! Score: {score}
@@ -68,18 +56,7 @@ function GameContainer() {
             </button>
           </div>
         )}
-        {!gameOver && (
-          <img
-            src={Constants.airplane}
-            alt='Airplane'
-            style={{
-              ...Styles.planeStyle,
-              left: `${planePosition.x}px`,
-              bottom: '0'
-            }}
-            className='position-absolute translate-middle'
-          />
-        )}
+        <Airplane gameOver={gameOver} planePositionX={planePosition.x} />
       </div>
     </div>
   );
