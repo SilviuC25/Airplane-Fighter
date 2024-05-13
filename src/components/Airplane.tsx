@@ -4,7 +4,8 @@ import * as Styles from '../styles/gameContainerStyles';
 const gameContainerWidth = Constants.GAME_WIDTH_PERCENTAGE * window.innerWidth;
 export const initialPlaneXPosition = (gameContainerWidth - Constants.PLANE_WIDTH) / 2;
 
-function Airplane({ gameOver, planePositionX }: { gameOver: boolean, planePositionX: number }) {
+function Airplane({ gameOver, planePositionX }: 
+  { gameOver: boolean, planePositionX: number }) {
   return (
     <>
       {!gameOver && (

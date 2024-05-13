@@ -12,7 +12,8 @@ function Obstacles({ obstacles }: ObstaclesProps) {
       {obstacles.map((obstacle, index) => (
         <img
           key={index}
-          src={Constants.asteroidObstacles[obstacle.id % Constants.asteroidObstacles.length]}
+          src={Constants.asteroidObstacles
+            [obstacle.id % Constants.asteroidObstacles.length]}
           alt='Obstacle'
           style={{
             ...Styles.obstacleStyle,

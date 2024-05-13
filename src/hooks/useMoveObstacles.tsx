@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { Obstacle } from '../datatypes/obstacle';
 import * as Constants from '../constants/gameConstants';
 
-const useMoveObstacles = (obstacles: Obstacle[], setObstacles: React.Dispatch<React.SetStateAction<Obstacle[]>>, 
+const useMoveObstacles = (obstacles: Obstacle[], 
+  setObstacles: React.Dispatch<React.SetStateAction<Obstacle[]>>,
   fallSpeed: number, gameOver: boolean): void => {
   useEffect(() => {
     const moveObstacles = () => {
